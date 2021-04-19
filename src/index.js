@@ -13,6 +13,13 @@ const darkTheme = createMuiTheme({
     type: 'dark',
     secondary: purple,
   },
+  typography: {
+    fontFamily: 'Quicksand',
+    fontWeightLight: 400,
+    fontWeightRegular: 500,
+    fontWeightMedium: 600,
+    fontWeightBolds: 700,
+  },
 });
 
 ReactDOM.render(
