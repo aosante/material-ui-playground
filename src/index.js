@@ -6,10 +6,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import './index.css';
 import App from './App';
+import { purple } from '@material-ui/core/colors';
 
 const darkTheme = createMuiTheme({
   palette: {
     type: 'dark',
+    secondary: purple,
   },
 });
 
