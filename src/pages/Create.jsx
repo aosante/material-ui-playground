@@ -4,6 +4,11 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import TextField from '@material-ui/core/TextField';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -19,6 +24,8 @@ const Create = () => {
   const [details, setDetails] = useState('');
   const [titleError, setTitleError] = useState(false);
   const [detailsError, setDetailsError] = useState(false);
+  const [category, setCategory] = useState('todos');
+
   const classes = useStyles();
 
   const handleSubmit = (e) => {
@@ -28,11 +35,13 @@ const Create = () => {
     if (!details) setDetailsError(true);
 
     if (title && details) {
-      console.log(title, details, 'submitting form successfully');
+      console.log(title, details, category, 'submitting form successfully');
       setTitleError(false);
       setDetailsError(false);
     }
   };
+
+  const handleChange = ({ target: { value } }) => setCategory(value);
 
   return (
     <Container size="sm">
@@ -53,7 +62,7 @@ const Create = () => {
           className={classes.field}
           fullWidth
           required
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={({ target: { value } }) => setTitle(value)}
           value={title}
           error={titleError}
         />
@@ -66,10 +75,23 @@ const Create = () => {
           rows={4}
           fullWidth
           required
-          onChange={(e) => setDetails(e.target.value)}
+          onChange={({ target: { value } }) => setDetails(value)}
           value={details}
           error={detailsError}
         />
+        <FormControl className={classes.field}>
+          <FormLabel>Category</FormLabel>
+          <RadioGroup value={category} onChange={handleChange}>
+            <FormControlLabel value="money" control={<Radio />} label="Money" />
+            <FormControlLabel value="todos" control={<Radio />} label="Todos" />
+            <FormControlLabel
+              value="reminders"
+              control={<Radio />}
+              label="Reminders"
+            />
+            <FormControlLabel value="work" control={<Radio />} label="Work" />
+          </RadioGroup>
+        </FormControl>
 
         <Button
           type="submit"
