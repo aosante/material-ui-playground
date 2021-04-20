@@ -17,7 +17,22 @@ const useStyles = makeStyles({
 const Create = () => {
   const [title, setTitle] = useState('');
   const [details, setDetails] = useState('');
+  const [titleError, setTitleError] = useState(false);
+  const [detailsError, setDetailsError] = useState(false);
   const classes = useStyles();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!title) setTitleError(true);
+    if (!details) setDetailsError(true);
+
+    if (title && details) {
+      console.log(title, details, 'submitting form successfully');
+      setTitleError(false);
+      setDetailsError(false);
+    }
+  };
 
   return (
     <Container size="sm">
@@ -30,7 +45,7 @@ const Create = () => {
         Create a New Note
       </Typography>
 
-      <form noValidate autoComplete="off">
+      <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <TextField
           label="Note Title"
           variant="outlined"
@@ -40,6 +55,7 @@ const Create = () => {
           required
           onChange={(e) => setTitle(e.target.value)}
           value={title}
+          error={titleError}
         />
         <TextField
           label="Details"
@@ -52,19 +68,19 @@ const Create = () => {
           required
           onChange={(e) => setDetails(e.target.value)}
           value={details}
+          error={detailsError}
         />
-      </form>
 
-      <Button
-        onClick={() => console.log('You clicked me')}
-        type="submit"
-        color="secondary"
-        variant="contained"
-        disableElevation
-        endIcon={<KeyboardArrowRightIcon />}
-      >
-        Submit
-      </Button>
+        <Button
+          type="submit"
+          color="secondary"
+          variant="contained"
+          disableElevation
+          endIcon={<KeyboardArrowRightIcon />}
+        >
+          Submit
+        </Button>
+      </form>
     </Container>
   );
 };
