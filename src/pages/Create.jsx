@@ -10,6 +10,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { makeStyles } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 // TODO: order imports
 
 const useStyles = makeStyles({
@@ -28,6 +29,7 @@ const Create = () => {
   const [category, setCategory] = useState('todos');
 
   const classes = useStyles();
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,7 +38,12 @@ const Create = () => {
     if (!details) setDetailsError(true);
 
     if (title && details) {
-      console.log(title, details, category, 'submitting form successfully');
+      fetch('http://localhost:8000/notes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, details, category }),
+      }).then(() => history.push('/'));
+
       setTitleError(false);
       setDetailsError(false);
     }
