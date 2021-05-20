@@ -7,7 +7,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import SubjectOutlined from '@material-ui/icons/SubjectOutlined';
 import AddCircleOutlineOutlined from '@material-ui/icons/AddCircleOutlineOutlined';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import { useHistory, useLocation } from 'react-router-dom';
+import { format } from 'date-fns';
 
 const drawerWidth = 240;
 
@@ -32,6 +35,14 @@ const useStyles = makeStyles((theme) => ({
   title: {
     padding: theme.spacing(2),
   },
+  appBar: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+  },
+  date: {
+    flexGrow: 1,
+  },
+  toolbar: theme.mixins.toolbar,
 }));
 
 const Layout = ({ children }) => {
@@ -55,6 +66,20 @@ const Layout = ({ children }) => {
   return (
     <div className={classes.root}>
       {/* app bar */}
+      <AppBar
+        position="fixed"
+        className={classes.appBar}
+        elevation={0}
+        color="primary"
+      >
+        <Toolbar>
+          <Typography className={classes.date}>
+            Today is the {format(new Date(), 'do MMMM Y')}
+          </Typography>
+          <Typography>Mario</Typography>
+        </Toolbar>
+      </AppBar>
+      {/* side drawer */}
       <Drawer
         className={classes.drawer}
         variant="permanent"
@@ -66,6 +91,7 @@ const Layout = ({ children }) => {
             Ninja Notes
           </Typography>
         </div>
+        {/* links/list section */}
         <List>
           {menuItems.map((item) => (
             <ListItem
@@ -80,7 +106,11 @@ const Layout = ({ children }) => {
           ))}
         </List>
       </Drawer>
-      <div className={classes.page}>{children}</div>
+      {/* main content */}
+      <div className={classes.page}>
+        <div className={classes.toolbar}></div>
+        {children}
+      </div>
     </div>
   );
 };
