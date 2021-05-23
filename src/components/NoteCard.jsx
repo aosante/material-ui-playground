@@ -1,9 +1,11 @@
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteOutlined from '@material-ui/icons/DeleteOutlined';
-import Typography from '@material-ui/core/Typography';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  IconButton,
+  Typography,
+} from '@material-ui/core';
+import { DeleteOutlined } from '@material-ui/icons';
 
 const NoteCard = ({ note, deleteNote }) => {
   const { id, category, title } = note;

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import Grid from '@material-ui/core/Grid';
-import { Container } from '@material-ui/core';
+import { Container, Grid } from '@material-ui/core';
 import NoteCard from '../components/NoteCard';
 
 const BASE_URL = 'http://localhost:8000/notes';
