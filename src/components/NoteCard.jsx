@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Card,
   CardContent,
   CardHeader,
@@ -13,6 +14,7 @@ const NoteCard = ({ note, deleteNote }) => {
   return (
     <Card style={{ height: '100%' }} elevation={3}>
       <CardHeader
+        avatar={<Avatar>{category[0].toUpperCase()}</Avatar>}
         action={
           <IconButton onClick={() => deleteNote(id)}>
             <DeleteOutlined />
