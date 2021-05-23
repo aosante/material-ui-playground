@@ -12,7 +12,7 @@ const NoteCard = ({ note, deleteNote }) => {
   const { id, category, title } = note;
 
   return (
-    <Card style={{ height: '100%' }} elevation={3}>
+    <Card elevation={3}>
       <CardHeader
         avatar={<Avatar>{category[0].toUpperCase()}</Avatar>}
         action={
