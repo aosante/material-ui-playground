@@ -26,14 +26,7 @@ const Notes = () => {
   return (
     <Grid container spacing={2}>
       {notes.map((note) => (
-        <Grid
-          item
-          key={note.id}
-          xs={12}
-          md={4}
-          lg={4}
-          style={{ display: 'flex' }}
-        >
+        <Grid item key={note.id} xs={12} md={4} style={{ display: 'flex' }}>
           <NoteCard deleteNote={handleDeleteNote} note={note} />
         </Grid>
       ))}
